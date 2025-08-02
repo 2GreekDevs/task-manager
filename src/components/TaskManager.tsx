@@ -7,6 +7,7 @@ import { TaskSidebar } from '@/components/TaskSidebar';
 import { TaskList } from '@/components/TaskList';
 import { TaskForm } from '@/components/TaskForm';
 import { TaskStats } from '@/components/TaskStats';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -63,21 +64,31 @@ export const TaskManager: React.FC = () => {
     const savedProjects = localStorage.getItem('taskManager-projects');
     
     if (savedTasks) {
-      const parsedTasks = JSON.parse(savedTasks).map((task: any) => ({
-        ...task,
-        dueDate: task.dueDate ? new Date(task.dueDate) : undefined,
-        createdAt: new Date(task.createdAt),
-        updatedAt: new Date(task.updatedAt),
-      }));
-      setTasks(parsedTasks);
+      try {
+        const parsedTasks = JSON.parse(savedTasks).map((task: any) => ({
+          ...task,
+          dueDate: task.dueDate ? new Date(task.dueDate) : undefined,
+          createdAt: new Date(task.createdAt),
+          updatedAt: new Date(task.updatedAt),
+        }));
+        setTasks(parsedTasks);
+      } catch (error) {
+        console.error('Error parsing saved tasks:', error);
+        localStorage.removeItem('taskManager-tasks');
+      }
     }
     
     if (savedProjects) {
-      const parsedProjects = JSON.parse(savedProjects).map((project: any) => ({
-        ...project,
-        createdAt: new Date(project.createdAt),
-      }));
-      setProjects(parsedProjects);
+      try {
+        const parsedProjects = JSON.parse(savedProjects).map((project: any) => ({
+          ...project,
+          createdAt: new Date(project.createdAt),
+        }));
+        setProjects(parsedProjects);
+      } catch (error) {
+        console.error('Error parsing saved projects:', error);
+        localStorage.removeItem('taskManager-projects');
+      }
     }
   }, []);
 
@@ -193,6 +204,8 @@ export const TaskManager: React.FC = () => {
               </div>
               
               <div className="flex items-center gap-3">
+                <ThemeToggle />
+                
                 <Button
                   variant="outline"
                   size="sm"

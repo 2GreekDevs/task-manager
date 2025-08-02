@@ -112,14 +112,28 @@ export const TaskList: React.FC<TaskListProps> = ({
     let interval: NodeJS.Timeout;
     if (activeTimer) {
       interval = setInterval(() => {
-        setTimers(prev => ({
-          ...prev,
-          [activeTimer]: (prev[activeTimer] || 0) + 1
-        }));
+        setTimers(prev => {
+          const newTimers = {
+            ...prev,
+            [activeTimer]: (prev[activeTimer] || 0) + 1
+          };
+          
+          // Update the actual task time spent
+          const currentTask = tasks.find(t => t.id === activeTimer);
+          if (currentTask) {
+            onUpdateTask(activeTimer, { 
+              timeSpent: currentTask.timeSpent + 1
+            });
+          }
+          
+          return newTimers;
+        });
       }, 60000); // Update every minute
     }
-    return () => clearInterval(interval);
-  }, [activeTimer]);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [activeTimer, onUpdateTask, tasks]);
 
   const TaskCard: React.FC<{ task: Task }> = ({ task }) => {
     const project = getProject(task.projectId);

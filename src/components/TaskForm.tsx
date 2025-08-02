@@ -51,7 +51,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     
     onSubmit({
       ...formData,
-      subtasks,
+      subtasks: subtasks.length > 0 ? subtasks : [],
     });
   };
 
