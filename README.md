@@ -58,4 +58,5 @@ Visit http://localhost:3000 in your browser to view the app.
 Follow us for updates:
 [📸 Instagram](https://www.instagram.com/2greekdevs/)
 [🌐 Website](2greekdevs.com)
+[💬 Discord Server](https://discord.gg/dHCvUaFAAH)
 
