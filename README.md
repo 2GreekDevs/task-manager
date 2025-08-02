@@ -17,14 +17,12 @@ Task Manager is a sleek and minimalistic task manager built with **React**. It h
 ## 🚀 Demo
 
 [🔗 Live Demo](https://your-demo-link.com)  
-*(Optional: Replace with your GitHub Pages or Netlify/Vercel live link)*
 
 ---
 
 ## 📸 Preview
 
 ![Craft To-Do Screenshot](https://your-screenshot-link.com)  
-*(Optional: Add a screenshot or GIF of the app in action)*
 
 ---
 
