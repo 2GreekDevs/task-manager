@@ -14,18 +14,6 @@ Task Manager is a sleek and minimalistic task manager built with **React**. It h
 
 ---
 
-## 🚀 Demo
-
-[🔗 Live Demo](https://your-demo-link.com)  
-
----
-
-## 📸 Preview
-
-![Craft To-Do Screenshot](https://your-screenshot-link.com)  
-
----
-
 ## 🧑‍💻 Tech Stack
 
 - React
